@@ -3,8 +3,7 @@ import React from 'react';
 import { BrowserRouter, Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import img from './imaage.svg'
-
+import img from './imaage.png'
 import Tilt from 'react-tilt';
 
 const Home = () => {

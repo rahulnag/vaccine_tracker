@@ -37,7 +37,7 @@ const Home = () => {
     return (
         <div className="Home">
         <div style={{textAlign:'center', marginTop:'0px', color:'#586776', fontSize:'3rem'}}>Welcome to vaccine search portal</div>
-        <div style={{textAlign:'center', marginTop:'0px', color:'#586776', fontSize:'1.5rem'}}>by Rahul Nag</div>
+        <div style={{textAlign:'center', marginTop:'0px', color:'#586776', fontSize:'1.5rem'}}>by Mohit Nag</div>
         <Grid container  direction="row"
             justify="space-around"
             alignItems="center" className={classes.root} spacing={3}> 

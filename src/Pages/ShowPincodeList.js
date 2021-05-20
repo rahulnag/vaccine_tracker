@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './style.css'
 
 const ShowList = (props) => {
-console.log(props.ageGroup)
+// console.log(props.ageGroup)
     return (
         <div className="DataShowing"> 
         <h2 style={{textAlign:'center', color:'#2B2B52'}}>{`Showing Result for Age: ${props.ageGroup} +`}</h2>
@@ -20,11 +20,12 @@ console.log(props.ageGroup)
                             <h3 style={{color:'#2C3335'}}>{`Address: ${d.address}`}</h3>
                             {
                                 d.sessions.map(a => {
-                                    console.log(a)
+                                    // console.log(a)
                                     
                                     return (
                                         a["min_age_limit"]==props.ageGroup
                                         ?
+                                        <a target="_blank" href="https://selfregistration.cowin.gov.in/" style={{textDecoration:'none'}}> 
                                         <Grid container
                                         direction="row"
                                         justify="space-between"
@@ -44,12 +45,14 @@ console.log(props.ageGroup)
                                             
                                             
                                         </Grid>
+                                        </a>
                                         :
                                         <h5 style={{textAlign:'center'}}>NOT AVAILABLE</h5>
                                     )
                                     
                                 })
                             }
+                         <small style={{fontSize:'0.7rem'}}>CLICK to visit COWIN portal</small>   
                         </Paper>
                     )
                 })

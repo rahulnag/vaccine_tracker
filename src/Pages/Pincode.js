@@ -41,11 +41,11 @@ const Pincode = () => {
             }
           })
           .then(function (response) {
-            console.log(response.data.centers)
+            // console.log(response.data.centers)
             setData(response.data.centers)
           })
           .catch(function (error) {
-            console.log(error);
+            // console.log(error);
           })
     },[pincode, time])
 
@@ -61,7 +61,7 @@ const Pincode = () => {
     }
 
     let handleRadioChange=(e)=>{
-      console.log(e)
+      // console.log(e)
       setAgeGroup(e.target.value)
     }
     return (

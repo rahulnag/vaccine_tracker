@@ -6,7 +6,7 @@ import './style.css'
 const ShowDistrictList = (props) => {
     let [mydata, setMyData] = useState([])
 
-    console.log(props)
+    // console.log(props)
     var today_date = new Date();
     var dd = String(today_date.getDate()).padStart(2, '0');
     var mm = String(today_date.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -24,7 +24,7 @@ const ShowDistrictList = (props) => {
 
 
     useEffect(()=>{
-        console.log("rrrrrr")
+        // console.log("rrrrrr")
         axios.get('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict', {
             params:{
                 district_id: String(props.districtID),
@@ -32,11 +32,11 @@ const ShowDistrictList = (props) => {
             }
           })
           .then(function (response) {
-              console.log(response)
+            //   console.log(response)
             setMyData(response.data.centers)
           })
           .catch(function (error) {
-            console.log(error);
+            // console.log(error);
           })
     },[time])
 
@@ -56,6 +56,7 @@ const ShowDistrictList = (props) => {
                                       return(
                                         a["min_age_limit"]==props.ageGroup
                                         ?
+                                            <a target="_blank" href="https://selfregistration.cowin.gov.in/" style={{textDecoration:'none'}}> 
                                             <Grid 
                                             container
                                             direction="row"
@@ -74,12 +75,14 @@ const ShowDistrictList = (props) => {
                                             <Grid item lg={4} md={4} sm={12} xs={12}><h4 style={{textAlign:'center'}}><span className="title">Vaccine:</span><span style={{fontStyle:'bold'}}>{` ${a["vaccine"]}`}</span></h4></Grid>
                                             
                                             </Grid>
+                                            </a>
                                         :
                                         <h5 style={{textAlign:'center'}}>NOT AVAILABLE</h5>
                                       ) 
                                     }
                             })
                         }
+                        <small style={{fontSize:'0.7rem'}}>CLICK to visit COWIN portal</small>   
                         </Paper>
                     )
                 })

@@ -23,7 +23,7 @@ const District = () => {
             setStateList(response.data.states)
           })
           .catch(function (error) {
-            console.log(error);
+            // console.log(error);
           })
     },[])
     useEffect(()=>{
@@ -33,7 +33,7 @@ const District = () => {
             setDistrict(response.data.districts)
           })
           .catch(function (error) {
-            console.log(error);
+            // console.log(error);
           })
     },[state_id])
 
@@ -55,12 +55,12 @@ const District = () => {
         }
     }
     let handleRadioChange=(e)=>{
-        console.log(e)
+        // console.log(e)
         setAgeGroup(e.target.value)
     }
     return (
         <div>
-            {console.log(district_id)}
+            {/* {console.log(district_id)} */}
             {
                 !searchClicked ?
                 (

@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Pincode from './Pincode';
 import District from './District';
-import img from './img.jpg'
+import img from './images.jpg'
 
 const Home = () => {
     const useStyles = makeStyles((theme) => ({
@@ -15,7 +15,7 @@ const Home = () => {
         padding:"0",
           width: "100%",
           height:"91vh",
-        //   backgroundImage:`url(${img})`,
+          backgroundImage:`url(${img})`,
           backgroundRepeat: "no-repeat",
             backgroundAttachment: "fixed",
             backgroundSize: "cover",

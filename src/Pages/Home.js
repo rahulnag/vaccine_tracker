@@ -3,9 +3,9 @@ import React from 'react';
 import { BrowserRouter, Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Pincode from './Pincode';
-import District from './District';
-import img from './images.jpg'
+import img from './imaage.svg'
+
+import Tilt from 'react-tilt';
 
 const Home = () => {
     const useStyles = makeStyles((theme) => ({
@@ -15,49 +15,58 @@ const Home = () => {
         padding:"0",
           width: "100%",
           height:"91vh",
-          backgroundImage:`url(${img})`,
-          backgroundRepeat: "no-repeat",
-            backgroundAttachment: "fixed",
-            backgroundSize: "cover",
         },
         paper:{
             width:"200px",
-            height:'200px',
+            height:'100px',
             textAlign:'center',
             padding:"40px",
             background:"rgba(255,255,255,0.4)",
             borderRadius:'10px',
             border:"0.01em solid rgba(255,255,255,0.4)",
             backdropFilter:'blur(5px)',
-            fontSize:'2.5rem',
+            fontSize:'2rem',
             color:'#2B2B52'
-        }
+        },
+        home: {
+            backgroundImage:`url(${img})`,
+            backgroundRepeat: "no-repeat",
+              backgroundAttachment: "fixed",
+              backgroundSize: "cover",
+        },
       }));
       const classes = useStyles();
     return (
-        <div className="Home">
+        <div className="Home" className={classes.home}>
         <div style={{textAlign:'center', marginTop:'0px', color:'#586776', fontSize:'3rem'}}>Welcome to vaccine search portal</div>
-        <div style={{textAlign:'center', marginTop:'0px', color:'#586776', fontSize:'1.5rem'}}>by Mohit Nag</div>
+        <div style={{textAlign:'center', marginTop:'0px', color:'#586776', fontSize:'1.5rem'}}>by Rahul Nag</div>
         <Grid container  direction="row"
             justify="space-around"
             alignItems="center" className={classes.root} spacing={3}> 
             
             <Link style={{textDecoration:'none'}} to="/pincode">  
-            <Grid item lg={12} >
+            <Grid item lg={12}>
+            <Tilt options={{ scale: 1.2, max: 25, speed: 300, transition: true }}>
             <Paper className={classes.paper} elevation={8}>
                 SEARCH BY PINCODE
-                
+                <Button>CLICK HERE</Button> 
             </Paper> 
+            </Tilt>
+            </Grid> 
             
-            </Grid>  
+
+
             </Link>
 
 
             <Link style={{textDecoration:'none'}} to="/district">
             <Grid item lg={12} >
+            <Tilt options={{ scale: 1.2, max: 25, speed: 300, transition: true }}>
             <Paper className={classes.paper} elevation={8}>
                 SEARCH BY DISTRICT
+                <Button>CLICK HERE</Button>
             </Paper>
+            </Tilt>
             </Grid>
             </Link>
         </Grid>

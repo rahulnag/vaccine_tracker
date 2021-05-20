@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import { Button, Grid, Link } from '@material-ui/core';
 import axios from 'axios';
 import Home from './Home';
-import ShowList from './ShowList';
+import ShowPincodeList from './ShowPincodeList';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -24,6 +24,7 @@ const Pincode = () => {
 
 
     const [time, setTime] = useState(Date.now());
+    let [isError, setError] = useState(true)
 
     useEffect(() => {
       const interval = setInterval(() => setTime(Date.now()), 2700000);
@@ -49,12 +50,13 @@ const Pincode = () => {
     },[pincode, time])
 
     let SearchPin=()=>{
-        if(myref.current.value.length!=6 &&  ageGroup=="")
-            alert("Enter 6 digit PIN")
-        if(!Number(myref.current.value))
+        if(myref.current.value.length!=6 ||  ageGroup=="")
+            alert("Enter 6 digit PIN & age")
+        else if(!Number(myref.current.value))
             alert("Only Number allowed")
         else{
             setPin(myref.current.value);
+            setError(false)
         }
     }
 
@@ -65,7 +67,7 @@ const Pincode = () => {
     return (
         <div>
             {
-            pincode.length==0 || ageGroup == ""
+            isError
             ?
             <Grid style={{height:'100vh', width:'100vw'}}
             container
@@ -93,7 +95,7 @@ const Pincode = () => {
             </Grid>
             </Grid>
             :
-            <ShowList data={data} ageGroup={ageGroup}/>
+            <ShowPincodeList data={data} ageGroup={ageGroup}/>
 }
         </div>
     );

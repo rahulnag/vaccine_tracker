@@ -15,6 +15,7 @@ class App extends Component{
             <Route path="/" component={Home} exact/>
             <Route path="/pincode" component={Pincode} />
             <Route path="/district" component={District} />
+            <Route path="*" component={Home} />
         </Switch>
         </>
     );

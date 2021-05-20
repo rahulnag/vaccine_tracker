@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Select from 'react-dropdown-select';
-import ShowList from './ShowList';
+import ShowList from './ShowPincodeList';
 import ShowDistrictList from './ShowDistrictList';
 import { Button, Grid } from '@material-ui/core';
 import Radio from '@material-ui/core/Radio';

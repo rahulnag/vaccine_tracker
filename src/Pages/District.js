@@ -8,6 +8,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { ClassRounded } from '@material-ui/icons';
+import Corona from './corona.svg'
 const District = () => {
     let [state_list, setStateList] = useState([])
     let [state_id, setStateId] = useState("")
@@ -37,6 +38,9 @@ const District = () => {
           })
     },[state_id])
 
+   
+
+
     let onChangeState =(v)=>{
         setStateId(v[0].state_id)
     }
@@ -64,7 +68,9 @@ const District = () => {
             {
                 !searchClicked ?
                 (
-                <Grid style={{height:'100vh', width:'100vw'}}
+                <Grid style={{height:'100vh', width:'100vw', background:`url(${Corona})`, backgroundRepeat: "no-repeat",
+                  backgroundAttachment: "fixed",
+                  backgroundSize: "cover",}}
                 container
                 direction="column"
                 justify="center"
@@ -81,7 +87,7 @@ const District = () => {
                     // loading
                     searchable={true}
                     searchBy="state_name"
-                    style={{width:"50vw", marginBottom:'10px'}}
+                    style={{width:"50vw", marginBottom:'10px', border:'1px solid black'}}
                 />
                 <Select
                     
@@ -94,7 +100,7 @@ const District = () => {
                     // loading
                     searchable={true}
                     searchBy="district_name"
-                    style={{width:"50vw"}}
+                    style={{width:"50vw", border:'1px solid black'}}
                 />
                 <br/>
                 <span>Select age</span>

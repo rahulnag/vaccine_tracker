@@ -8,6 +8,7 @@ import ShowPincodeList from './ShowPincodeList';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Corona from './corona.svg'
 
 
 
@@ -25,6 +26,8 @@ const Pincode = () => {
 
     const [time, setTime] = useState(Date.now());
     let [isError, setError] = useState(true)
+    let [isAvailable, setIsAvailable] = useState(false)
+
 
     useEffect(() => {
       const interval = setInterval(() => setTime(Date.now()), 2700000);
@@ -47,7 +50,26 @@ const Pincode = () => {
           .catch(function (error) {
             // console.log(error);
           })
+
     },[pincode, time])
+
+    useEffect(()=>{
+      data.forEach(d=>{
+        // console.log(d)
+        d.sessions.forEach(a=>
+            {
+                // console.log(a)
+                if(a["min_age_limit"]==ageGroup){
+                  if(a["available_capacity"] > 0 ){
+                    setIsAvailable(true)
+                }
+              }
+                
+            }
+        )
+    })
+    },[data])
+
 
     let SearchPin=()=>{
         if(myref.current.value.length!=6 ||  ageGroup=="")
@@ -69,7 +91,9 @@ const Pincode = () => {
             {
             isError
             ?
-            <Grid style={{height:'100vh', width:'100vw'}}
+            <Grid style={{height:'100vh', width:'100vw', background:`url(${Corona})`, backgroundRepeat: "no-repeat",
+            backgroundAttachment: "fixed",
+            backgroundSize: "cover",}}
             container
             direction="column"
             justify="center"
@@ -95,7 +119,7 @@ const Pincode = () => {
             </Grid>
             </Grid>
             :
-            <ShowPincodeList data={data} ageGroup={ageGroup}/>
+            <ShowPincodeList data={data} ageGroup={ageGroup} available={isAvailable}/>
 }
         </div>
     );

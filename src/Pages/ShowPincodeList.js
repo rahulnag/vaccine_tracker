@@ -3,15 +3,18 @@ import React, { useEffect, useState } from 'react';
 import './style.css'
 
 const ShowList = (props) => {
-// console.log(props.ageGroup)
+    let speak = (x)=>{
+        let utter = new SpeechSynthesisUtterance(x);
+    
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utter);
+    }
+
     return (
+        
         <div className="DataShowing"> 
+        {/* {console.log(props.available)} */}
         <h2 style={{textAlign:'center', color:'#2B2B52'}}>{`Showing Result for Age: ${props.ageGroup} +`}</h2>
-        {/* <Grid container direction="row" justify="centers " alignItems="center" style={{marginBottom:'50px',}}>
-           <div style={{background:'red', width:'30px', height:'30px', borderRadius:'50px'}}></div><span>Vaccine Not available</span>
-           <div style={{background:'green', width:'30px', height:'30px', borderRadius:'50px'}}></div><span>Vaccine Available</span>
-           <div style={{background:'grey', width:'30px', height:'30px', borderRadius:'50px'}}></div><span>Not Available for {props.ageGroup}</span>
-        </Grid> */}
             {
                 props.data.map(d => {
                     return (
@@ -56,9 +59,17 @@ const ShowList = (props) => {
                         </Paper>
                     )
                 })
+
+                
+            }
+            
+            {
+                props.available ? speak("vaccine is available, please scroll, you'll find green") : speak("sorry vaccine is not available, stay here, we will notify you once the vaccine is available")
             }
         </div>
     );
+
 };
+
 
 export default ShowList;

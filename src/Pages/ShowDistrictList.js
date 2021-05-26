@@ -5,6 +5,7 @@ import './style.css'
 
 const ShowDistrictList = (props) => {
     let [mydata, setMyData] = useState([])
+    let [isAvailable, setIsAvailable] = useState(false)
 
     // console.log(props)
     var today_date = new Date();
@@ -24,7 +25,6 @@ const ShowDistrictList = (props) => {
 
 
     useEffect(()=>{
-        // console.log("rrrrrr")
         axios.get('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict', {
             params:{
                 district_id: String(props.districtID),
@@ -39,6 +39,29 @@ const ShowDistrictList = (props) => {
             // console.log(error);
           })
     },[time])
+
+    useEffect(()=>{
+      mydata.forEach(d=>{
+        d.sessions.forEach(a=>
+            {
+              // console.log(d.name+"...."+a["available_capacity"]+"...."+a["min_age_limit"])
+              if(a["min_age_limit"]==props.ageGroup){
+                if(a["available_capacity"] > 0 ){
+                  setIsAvailable(true)
+                }
+              }
+            }
+        )
+    })
+    },[mydata])
+
+
+    let speak = (x)=>{
+      let utter = new SpeechSynthesisUtterance(x);
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utter);
+  }
+
 
     return (
         <div className="DataShowing">
@@ -88,7 +111,11 @@ const ShowDistrictList = (props) => {
                 })
                 :(<h1>LOADEDING.</h1>)
             }
+             {
+              isAvailable ? speak("vaccine is available, please scroll, you'll find green") : speak("sorry vaccine is not available, stay here, we will notify you once the vaccine is available")
+            }
         </div>
+       
     );
 };
 
